@@ -1,0 +1,152 @@
+.products {
+    margin-top: 20px;
+}
+
+.products-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.products-header .search-container {
+    flex: 1;
+    margin: 0;
+}
+
+.products-header .btn-add-product {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.product__table {
+    display: grid;
+    grid-template-columns: 80px 1fr 120px 150px 150px 150px;
+    gap: 1px;
+    border: 1px solid var(--color-border);
+    background: white;
+}
+
+.product__header {
+    display: contents;
+}
+
+.product__header-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 8px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 15px;
+    background: #f5f5f5;
+    border-right: 1px solid var(--color-border);
+}
+
+.product__header-item:last-child {
+    border-right: none;
+}
+
+.product__row {
+    display: contents;
+}
+
+.product__row:hover .product__cell {
+    background: var(--color-hover);
+    cursor: pointer;
+}
+.product__row:hover .product__cell:last-child {
+    cursor: auto;
+}
+
+.product__cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 8px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-border);
+}
+
+.product__cell:last-child {
+    border-right: none;
+}
+
+.product__cta-delete {
+    background: red;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.product__cta-delete:hover {
+    background: darkred;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+    padding: 20px 0;
+}
+
+.pagination__btn {
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.pagination__btn:hover:not(:disabled) {
+    background: #0056b3;
+}
+
+.pagination__btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.pagination__info {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.pagination__page {
+    padding: 8px 14px;
+    background: white;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagination__page:hover {
+    background: #f0f0f0;
+    border-color: #007bff;
+}
+
+.pagination__page--active {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.pagination__page--active:hover {
+    background: #0056b3;
+}

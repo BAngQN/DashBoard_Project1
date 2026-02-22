@@ -1,0 +1,31 @@
+.btn-add-product {
+    padding: 12px 24px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-add-product:hover {
+    background: #218838;
+}
+
+.btn-back {
+    padding: 10px 20px;
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-back:hover {
+    background: #5a6268;
+}
