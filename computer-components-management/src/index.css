@@ -26,10 +26,15 @@ body {
     font-size: 1.6rem;
     font-weight: 400;
     overflow: auto;
-    font-size: 1.6rem;
 }
 
 .container {
+    width: 1170px;
+    max-width: calc(100% - 48px);
+    margin: 0 auto;
+}
+
+.app-container {
     width: 1170px;
     max-width: calc(100% - 48px);
     margin: 0 auto;
@@ -40,6 +45,19 @@ a {
 }
 
 .loader {
+    margin: auto;
+    width: 80px;
+    aspect-ratio: 1;
+    --c: no-repeat linear-gradient(#000 0 0);
+    background:
+        var(--c) 0% 50%,
+        var(--c) 50% 50%,
+        var(--c) 100% 50%;
+    background-size: 20% 100%;
+    animation: l1 1s infinite linear;
+}
+
+.app-loader {
     margin: auto;
     width: 80px;
     aspect-ratio: 1;

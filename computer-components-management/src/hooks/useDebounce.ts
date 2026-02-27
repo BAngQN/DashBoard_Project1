@@ -2,16 +2,16 @@ import { useEffect, useRef, useState } from "react";
 
 const useDebounce = (value: string, delay: number) => {
     const [debouncedValue, setDebouncedValue] = useState(value);
-    const debouncedValueRef = useRef<number | null>(null);
+    const timeRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     useEffect(() => {
-        debouncedValueRef.current = setTimeout(() => {
+        timeRef.current = setTimeout(() => {
             setDebouncedValue(value);
         }, delay);
 
         return () => {
-            if (debouncedValueRef.current) {
-                clearTimeout(debouncedValueRef.current);
+            if (timeRef.current != null) {
+                clearTimeout(timeRef.current);
             }
         };
     }, [value, delay]);
