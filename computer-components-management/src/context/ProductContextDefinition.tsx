@@ -12,7 +12,4 @@ interface ProductContextType {
     dispatch: React.Dispatch<ProductAction>;
 }
 
-export const ProductContext = createContext<ProductContextType>({
-    products: [],
-    dispatch: () => {},
-});
+export const ProductContext = createContext<ProductContextType | null>(null);

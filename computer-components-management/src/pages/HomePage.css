@@ -1,3 +1,21 @@
+.home-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 24px 0px;
+}
+
+.home-header .search-container {
+    flex: 1;
+    margin: 0;
+}
+
+.home-header .btn-add-product {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
 .btn-add-product {
     padding: 12px 24px;
     background: #28a745;

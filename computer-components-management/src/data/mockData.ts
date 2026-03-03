@@ -45,7 +45,7 @@ export const mockData: Product[] = [
         price: 2090000,
         quantity: 10,
         description: '24" FHD IPS 120Hz 1ms',
-        image: "https://mmd-aoc2.oss-cn-hongkong.aliyuncs.com/Products/Monitors/B%20Line/B20/24B20JH3/24B20JH3_BTL.png",
+        imgUrl: "https://mmd-aoc2.oss-cn-hongkong.aliyuncs.com/Products/Monitors/B%20Line/B20/24B20JH3/24B20JH3_BTL.png",
         specifications: {
             Size: '24"',
             Resolution: "FHD",
@@ -206,11 +206,11 @@ export const mockData: Product[] = [
     },
     {
         id: "spk0012",
-        name: "EDIFIER D12 Bluetooth (BROWN / BLACK)",
+        name: "EDIFIER D1234 Bluetooth (BROWN / BLACK)",
         category: "speaker",
         brand: "EDIFIER",
-        price: 1890000,
-        quantity: 14,
+        price: 11750000,
+        quantity: 12,
         description:
             "Bluetooth speaker with high-quality sound and wood finish.",
         imgUrl: "https://www.techhive.com/wp-content/uploads/2023/04/edifier-d12-angle-2-100900746-orig.jpg?quality=50&strip=all&w=1024",
@@ -218,7 +218,7 @@ export const mockData: Product[] = [
             "Output Power": "70W",
             Connectivity: "Bluetooth, AUX, RCA",
         },
-        createdAt: "2025-07-15",
-        updatedAt: "2026-02-02",
+        createdAt: "2025-07-13",
+        updatedAt: "2026-02-03",
     },
 ];

@@ -1,5 +1,5 @@
 import "./index.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useDebounce from "../../hooks/useDebounce";
 
 interface SearchProps {
@@ -11,13 +11,12 @@ function Search({ onSearch, placeholder = "Search products..." }: SearchProps) {
     const [searchTerm, setSearchTerm] = useState("");
     const debounceSearchTerm = useDebounce(searchTerm, 500);
     const isSearching = searchTerm !== debounceSearchTerm;
+    const prevDebounceRef = useRef(debounceSearchTerm);
 
     useEffect(() => {
-        if (debounceSearchTerm !== undefined) {
-            if (onSearch) {
-                onSearch(debounceSearchTerm);
-            }
-        }
+        if (prevDebounceRef.current === debounceSearchTerm) return;
+        prevDebounceRef.current = debounceSearchTerm;
+        onSearch?.(debounceSearchTerm ?? "");
     }, [debounceSearchTerm, onSearch]);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

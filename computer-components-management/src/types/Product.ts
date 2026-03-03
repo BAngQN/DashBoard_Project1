@@ -14,7 +14,21 @@ export interface Product {
 
 export type NewProduct = Omit<Product, "id" | "createdAt" | "updatedAt">;
 
-type ProductType =
+export type UpdateProductDTO = Partial<
+    Pick<
+        NewProduct,
+        | "name"
+        | "category"
+        | "brand"
+        | "price"
+        | "quantity"
+        | "description"
+        | "imgUrl"
+        | "specifications"
+    >
+>;
+
+export type ProductType =
     | "keyboard"
     | "mouse"
     | "monitor"

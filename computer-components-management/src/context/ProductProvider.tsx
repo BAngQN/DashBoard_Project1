@@ -21,14 +21,12 @@ function productReducer(products: Product[], action: ProductAction) {
             return products.map((product) =>
                 product.id === action.payload.id
                     ? { ...product, ...action.payload }
-                    : product
+                    : product,
             );
         case "DELETE_PRODUCT":
             return products.filter(
-                (product) => product.id !== action.payload.id
+                (product) => product.id !== action.payload.id,
             );
-        default:
-            return products;
     }
 }
 export default ProductProvider;

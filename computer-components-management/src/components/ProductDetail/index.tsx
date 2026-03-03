@@ -1,13 +1,19 @@
 import "./index.css";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { mockApi } from "../../utils/mockAPI";
 import type { Product, NewProduct } from "../../types/Product";
 import ProductForm from "../ProductForm";
-import { ProductContext } from "../../context/ProductContextDefinition";
+import { useProductContext } from "../../hooks/useProductContext";
+import { toNewProduct } from "../../utils/productMappers";
+
+const currencyFormatter = new Intl.NumberFormat("vi-VN", {
+    style: "currency",
+    currency: "VND",
+});
 
 function ProductDetail() {
-    const { dispatch } = useContext(ProductContext);
+    const { dispatch } = useProductContext();
     const { id } = useParams();
     const navigate = useNavigate();
     const [product, setProduct] = useState<Product | null>(null);
@@ -31,7 +37,7 @@ function ProductDetail() {
                 const response = await mockApi.fetchProductById(id);
 
                 if (isMounted) {
-                    if (response.success) {
+                    if (response.success && response.data) {
                         setProduct(response.data);
                     } else {
                         setError("Failed to fetch product details");
@@ -40,7 +46,9 @@ function ProductDetail() {
             } catch (err) {
                 if (isMounted) {
                     setError(
-                        err instanceof Error ? err.message : "An error occurred"
+                        err instanceof Error
+                            ? err.message
+                            : "An error occurred",
                     );
                 }
             } finally {
@@ -63,6 +71,11 @@ function ProductDetail() {
         try {
             const response = await mockApi.updateProduct(id, data);
             if (response.success) {
+                if (!response.data) {
+                    alert("Product not found. It may have been deleted.");
+                    navigate("/");
+                    return;
+                }
                 const updatedProduct = response.data as Product;
                 setShowForm(false);
                 setProduct(updatedProduct);
@@ -74,7 +87,7 @@ function ProductDetail() {
             } else {
                 alert("Failed to update product");
             }
-        } catch (err) {
+        } catch {
             alert("An error occurred while updating the product");
         }
     };
@@ -95,7 +108,7 @@ function ProductDetail() {
     if (loading) {
         return (
             <div className="loader-container">
-                <div className="loader"></div>
+                <div className="app-loader"></div>
             </div>
         );
     }
@@ -103,7 +116,7 @@ function ProductDetail() {
     // Error state
     if (error) {
         return (
-            <div className="container">
+            <div className="product-detail-container">
                 <button className="btn-back" onClick={handleBackToList}>
                     ← Back to List
                 </button>
@@ -115,7 +128,7 @@ function ProductDetail() {
     // Product not found
     if (!product) {
         return (
-            <div className="container">
+            <div className="product-detail-container">
                 <button className="btn-back" onClick={handleBackToList}>
                     ← Back to List
                 </button>
@@ -127,21 +140,12 @@ function ProductDetail() {
     // Show edit form
     if (showForm) {
         return (
-            <div className="container">
+            <div className="product-detail-container">
                 <button className="btn-back" onClick={handleCancelForm}>
                     ← Cancel
                 </button>
                 <ProductForm
-                    previousData={{
-                        name: product.name,
-                        brand: product.brand,
-                        description: product.description,
-                        category: product.category,
-                        quantity: product.quantity,
-                        price: product.price,
-                        imgUrl: product.imgUrl,
-                        specifications: product.specifications,
-                    }}
+                    previousData={toNewProduct(product)}
                     onSubmit={handleFormSubmit}
                 />
             </div>
@@ -150,7 +154,7 @@ function ProductDetail() {
 
     // Show product details
     return (
-        <section className="product container">
+        <section className="product app-container">
             <figure className="product__img">
                 <img src={product.imgUrl} alt={product.name} />
             </figure>
@@ -174,7 +178,7 @@ function ProductDetail() {
                     <div className="meta-item">
                         <span className="meta-item__label">Price:</span>
                         <span className="meta-item__value">
-                            {product.price}
+                            {currencyFormatter.format(product.price)}
                         </span>
                     </div>
                 </div>
@@ -197,7 +201,7 @@ function ProductDetail() {
                                     <li key={key} className="spec-list__item">
                                         <strong>{key}:</strong> {value}
                                     </li>
-                                )
+                                ),
                             )}
                         </ul>
                     </div>
